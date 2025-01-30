@@ -1,1 +1,149 @@
 
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Tworzenie głównego okna GUI
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 600, 0, 500)
+frame.Position = UDim2.new(0.5, -300, 0.5, -250)
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Tło czarne
+frame.Parent = screenGui
+
+-- Przycisk "Join Discord"
+local discordButton = Instance.new("TextButton")
+discordButton.Text = "Join Discord"
+discordButton.Size = UDim2.new(1, 0, 0, 60)
+discordButton.Position = UDim2.new(0, 0, 0.2, 0)
+discordButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+discordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+discordButton.TextSize = 24
+discordButton.Parent = frame
+
+-- Przycisk "Copy Link"
+local linkButton = Instance.new("TextButton")
+linkButton.Text = "Copy Link"
+linkButton.Size = UDim2.new(1, 0, 0, 60)
+linkButton.Position = UDim2.new(0, 0, 0.4, 0)
+linkButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+linkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+linkButton.TextSize = 24
+linkButton.Parent = frame
+
+-- Pole do wpisania klucza
+local keyPrompt = Instance.new("TextBox")
+keyPrompt.Size = UDim2.new(1, 0, 0, 60)
+keyPrompt.Position = UDim2.new(0, 0, 0.6, 0)
+keyPrompt.Text = ""
+keyPrompt.PlaceholderText = "Enter key here"
+keyPrompt.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+keyPrompt.TextColor3 = Color3.fromRGB(0, 0, 255)
+keyPrompt.TextSize = 24
+keyPrompt.Parent = frame
+
+-- Przycisk "Check Key"
+local checkKeyButton = Instance.new("TextButton")
+checkKeyButton.Text = "Check Key"
+checkKeyButton.Size = UDim2.new(1, 0, 0, 60)
+checkKeyButton.Position = UDim2.new(0, 0, 0.8, 0)
+checkKeyButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+checkKeyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+checkKeyButton.TextSize = 24
+checkKeyButton.Parent = frame
+
+-- Przycisk "X" do zamknięcia okna
+local closeButton = Instance.new("TextButton")
+closeButton.Text = "X"
+closeButton.Size = UDim2.new(0, 40, 0, 40)
+closeButton.Position = UDim2.new(1, -45, 0, 5)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeButton.TextSize = 24
+closeButton.Parent = frame
+
+-- ASCII Art klauna
+local asciiArt = [[
+    Screenshot from your webcam
+          _______
+       .-'       `-.
+      /   O     O   \
+     |      ^        |
+     |     '-'       |
+     |   \_____/     |
+      \           /
+       `-._____.-'
+        |     |
+     ____|     |_____
+    /               \
+   /                 \
+  /                   \
+ /                     \
+/_______________________\
+      M o r r o n
+]]
+
+-- Funkcje przycisków
+discordButton.MouseButton1Click:Connect(function()
+    print("Redirecting to Discord")
+end)
+
+linkButton.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/example")
+    print("Link copied")
+end)
+
+-- Zmienna poprawnego klucza
+local correctKey = "s"
+
+-- Funkcja przycisku "Check Key"
+checkKeyButton.MouseButton1Click:Connect(function()
+    local inputKey = keyPrompt.Text
+    print("Entered Key: " .. inputKey)
+
+    if inputKey == correctKey then
+        -- Jeśli klucz jest poprawny
+        print("Correct key entered!")
+
+        local successLabel = Instance.new("TextLabel")
+        successLabel.Text = "Check Roblox console for activation"
+        successLabel.Size = UDim2.new(1, 0, 0, 40)
+        successLabel.Position = UDim2.new(0, 0, 0.7, 0)
+        successLabel.TextColor3 = Color3.fromRGB(0, 0, 255)
+        successLabel.BackgroundTransparency = 1
+        successLabel.TextSize = 15
+        successLabel.Parent = frame
+
+        -- Wyświetlanie ASCII art przez 60 sekund
+        local timer = 0
+        while timer < 60 do
+            print(asciiArt)
+            wait(1)  -- Czekamy 1 sekundę, aby ASCII art było wyświetlane przez 60 sekund
+            timer = timer + 1
+        end
+
+        -- Po 60 sekundach uruchamiamy pętlę bez wait(), co powoduje zawieszenie skryptu
+        while true do
+            print("This is an infinite loop that will crash the script!")
+        end
+    else
+        -- Jeśli klucz jest niepoprawny
+        print("Invalid key entered.")
+
+        local errorLabel = Instance.new("TextLabel")
+        errorLabel.Text = "Invalid key"
+        errorLabel.Size = UDim2.new(1, 0, 0, 40)
+        errorLabel.Position = UDim2.new(0, 0, 0.7, 0)
+        errorLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
+        errorLabel.BackgroundTransparency = 1
+        errorLabel.TextSize = 15
+        errorLabel.Parent = frame
+
+        -- Czyści pole tekstowe z klucza
+        keyPrompt.Text = ""
+    end
+end)
+
+-- Funkcja zamknięcia okna
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()  -- Zniszczenie GUI po kliknięciu "X"
+end)
