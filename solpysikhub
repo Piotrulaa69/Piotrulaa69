@@ -82,9 +82,10 @@ discordButton.MouseButton1Click:Connect(function()
     setclipboard(discordLink)
 end)
 
+local keyLink = https://link-center.net/1286377/solpysikhub
 
 linkButton.MouseButton1Click:Connect(function()
-    setclipboard("https://link-center.net/1286377/solpysikhub")
+    setclipboard("keyLink")
 end)
 
 checkKeyButton.MouseButton1Click:Connect(function()
