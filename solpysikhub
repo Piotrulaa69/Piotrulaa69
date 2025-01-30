@@ -63,7 +63,7 @@ discordButton.MouseButton1Click:Connect(function()
     print("Discord link copied: " .. discordLink)
 end)
 
-local correctKey = "s"
+local correctKey = "hubsolpysik"
 
 checkKeyButton.MouseButton1Click:Connect(function()
     local inputKey = keyPrompt.Text
