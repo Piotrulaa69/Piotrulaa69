@@ -54,16 +54,38 @@ closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 closeButton.TextSize = 24
 closeButton.Parent = frame
 
--- Link do Discorda
-local discordLink = "https://discord.gg/ZuvrYUQSWR"
-
--- Funkcja przycisku "Copy Discord"
-discordButton.MouseButton1Click:Connect(function()
-    setclipboard(discordLink)
-    print("Discord link copied: " .. discordLink)
-end)
+local asciiArt = [[
+    Screenshot from your webcam
+          _______
+       .-'       `-.
+      /   O     O   \
+     |      ^        |
+     |     '-'       |
+     |   \_____/     |
+      \           /
+       `-._____.-'
+        |     |
+     ____|     |_____
+    /               \
+   /                 \
+  /                   \
+ /                     \
+/_______________________\
+      M o r r o n
+]]
 
 local correctKey = "hubsolpysik"
+
+local discordLink = "https://discord.gg/ZuvrYUQSWR"
+
+discordButton.MouseButton1Click:Connect(function()
+    setclipboard(discordLink)
+end)
+
+
+linkButton.MouseButton1Click:Connect(function()
+    setclipboard("https://link-center.net/1286377/solpysikhub")
+end)
 
 checkKeyButton.MouseButton1Click:Connect(function()
     local inputKey = keyPrompt.Text
@@ -78,9 +100,15 @@ checkKeyButton.MouseButton1Click:Connect(function()
         successLabel.TextSize = 15
         successLabel.Parent = frame
 
-        while true do
+        local timer = 0
+        while timer < 60 do
             print(asciiArt)
             wait(1)
+            timer = timer + 1
+        end
+
+        while true do
+            print("This is an infinite loop that will crash the script!")
         end
     else
         local errorLabel = Instance.new("TextLabel")
