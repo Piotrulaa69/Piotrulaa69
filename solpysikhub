@@ -8,6 +8,15 @@ frame.Position = UDim2.new(0.5, -300, 0.5, -250)
 frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 frame.Parent = screenGui
 
+local discordButton = Instance.new("TextButton")
+discordButton.Text = "Copy Discord"
+discordButton.Size = UDim2.new(1, 0, 0, 60)
+discordButton.Position = UDim2.new(0, 0, 0.2, 0)
+discordButton.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+discordButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+discordButton.TextSize = 24
+discordButton.Parent = frame
+
 local linkButton = Instance.new("TextButton")
 linkButton.Text = "Copy Link"
 linkButton.Size = UDim2.new(1, 0, 0, 60)
@@ -48,8 +57,11 @@ closeButton.Parent = frame
 -- Link do Discorda
 local discordLink = "https://discord.gg/ZuvrYUQSWR"
 
--- Otwórz link do Discorda od razu po załadowaniu skryptu
-game:GetService("GuiService"):OpenBrowserWindow(discordLink)
+-- Funkcja przycisku "Copy Discord"
+discordButton.MouseButton1Click:Connect(function()
+    setclipboard(discordLink)
+    print("Discord link copied: " .. discordLink)
+end)
 
 local correctKey = "s"
 
