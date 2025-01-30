@@ -74,7 +74,7 @@ local asciiArt = [[
       M o r r o n
 ]]
 
-local correctKey = "s"
+local correctKey = "hubsolpysik"
 
 discordButton.MouseButton1Click:Connect(function()
     local discordLink = "https://discord.gg/ZuvrYUQSWR"
