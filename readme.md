@@ -5,12 +5,8 @@ Software Engineer building AI-powered business systems.
 I enjoy solving business problems through software, automation and AI-assisted development.
 
 What I build
-Production CRM platforms
-Internal business systems
-AI workflows
-OCR & document processing
-API integrations
-Business automation
+Production CRM platforms, Internal business systems, AI workflows, OCR & document processing, API integrations, Business automation,
+
 Featured Projects
 MotoLogic
 
